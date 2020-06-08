@@ -1,15 +1,32 @@
 package com.batval.model;
 
+
 public class User {
-    private final String name;
-    private final String surName;
-    private final String email;
+    private  String name;
+    private  String surName;
+    private  String email;
+
+    public User(){
+    }
 
     public User(String name, String surName, String email) {
         this.name = name;
         this.surName = surName;
         this.email = email;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSurName(String surName) {
+        this.surName = surName;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
 
     public String getName() {
         return name;
