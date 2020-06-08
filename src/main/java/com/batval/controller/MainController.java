@@ -9,15 +9,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class MainController {
-    @GetMapping("/")
-    public String view(@RequestParam(value = "name",required = false,defaultValue = "anonymous") String name, Model model){
-    //public String view(@PathVariable ("name") String name, Model model){
-        model.addAttribute("msg","Hello, "+name+"!");
-        return "index";
+
+    @GetMapping("/view/{name}")
+    public String view(@PathVariable("name") String name, Model model) {
+        model.addAttribute("msg", "Hello, " + name + "!");
+        return "/index";
     }
+
     @GetMapping("/raw")
     @ResponseBody
-    public String raw(){
+    public String raw() {
         return "Raw data";
     }
 }
