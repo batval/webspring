@@ -2,6 +2,7 @@ package com.batval.dao;
 
 import com.batval.model.User;
 import com.mysql.cj.protocol.Resultset;
+import com.mysql.cj.xdevapi.SqlDataResult;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -56,5 +57,34 @@ public class UserDAO {
         return users;
     }
 
+    public User getOne(String email) {
+        try {
+            PreparedStatement ps = connection.prepareStatement("select * from users where email=?");
+            ps.setString(1, email);
+
+            ResultSet resultSet = ps.executeQuery();
+            if (resultSet.next()) {
+                User user = new User();
+                user.setName(resultSet.getString(1));
+                user.setSurname(resultSet.getString(2));
+                user.setEmail(resultSet.getString(3));
+                return user;
+            }
+
+        } catch (SQLException ignored) {
+        }
+        return null;
+    }
+
+    public void add(User user)  {
+        try {
+            PreparedStatement ps = connection.prepareStatement("insert into users values(?,?,?)");
+            ps.setString(1, user.getName());
+            ps.setString(2, user.getSurname());
+            ps.setString(3, user.getEmail());
+            ps.execute();
+        }
+        catch (SQLException ignored){}
+    }
 
 }

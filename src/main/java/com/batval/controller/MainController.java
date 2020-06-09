@@ -2,6 +2,7 @@ package com.batval.controller;
 
 import com.batval.dao.UserDAO;
 import com.batval.model.User;
+import com.batval.util.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +14,9 @@ import java.sql.SQLException;
 
 @Controller
 public class MainController {
+
+    @Autowired
+    private UserValidator userValidator;
 
     @Autowired
     private UserDAO userDAO;
@@ -43,10 +47,11 @@ public class MainController {
 
     @PostMapping("/users/new")
     public String signUp(@ModelAttribute @Valid User user, BindingResult result) {
+        userValidator.validate(user,result);
         if (result.hasErrors()){
             return "/sign_up";
         }
-    //    users.add(user);
+    userDAO.add(user);
         return "redirect:/users";
 
     }
