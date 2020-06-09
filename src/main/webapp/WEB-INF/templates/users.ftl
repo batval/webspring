@@ -6,7 +6,7 @@
 <#if users?has_content>
     <ul>
     <#list users as user>
-    <li>${user.name} ${user.surName} ${user.email}</li>
+    <li>${user.name} ${user.surname} ${user.email}</li>
     </#list>
     </ul>
     <#else>

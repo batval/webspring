@@ -1,17 +1,27 @@
 package com.batval.model;
 
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 public class User {
+
+    @NotBlank(message = "Name is required!")
+    @Size(min=3, max=30, message = "Name should be from 1 to 30")
     private  String name;
-    private  String surName;
+    @NotBlank(message = "Surname is required!")
+    @Size(min=3, max=30, message = "Surname should be from 1 to 30")
+    private  String surname;
+    @Email
     private  String email;
 
     public User(){
     }
 
-    public User(String name, String surName, String email) {
+    public User(String name, String surname, String email) {
         this.name = name;
-        this.surName = surName;
+        this.surname = surname;
         this.email = email;
     }
 
@@ -19,8 +29,8 @@ public class User {
         this.name = name;
     }
 
-    public void setSurName(String surName) {
-        this.surName = surName;
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public void setEmail(String email) {
@@ -32,8 +42,8 @@ public class User {
         return name;
     }
 
-    public String getSurName() {
-        return surName;
+    public String getSurname() {
+        return surname;
     }
 
     public String getEmail() {
