@@ -1,6 +1,6 @@
 package com.batval.controller;
 
-import com.batval.dao.UserDAO;
+import com.batval.dao.impl.JdbcTemplateUserDAO;
 import com.batval.model.User;
 import com.batval.util.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ public class MainController {
     private UserValidator userValidator;
 
     @Autowired
-    private UserDAO userDAO;
+    private JdbcTemplateUserDAO userDAO;
 
     @GetMapping("/view/{name}")
     public String view(@PathVariable("name") String name, Model model) {
@@ -51,7 +51,7 @@ public class MainController {
         if (result.hasErrors()) {
             return "/sign_up";
         }
-        userDAO.add(user);
+        userDAO.addUser(user);
         return "redirect:/users";
 
     }

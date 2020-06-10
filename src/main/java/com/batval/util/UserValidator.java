@@ -1,6 +1,6 @@
 package com.batval.util;
 
-import com.batval.dao.UserDAO;
+import com.batval.dao.impl.JdbcTemplateUserDAO;
 import com.batval.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -10,7 +10,7 @@ import org.springframework.validation.Validator;
 @Component
 public class UserValidator implements Validator {
     @Autowired
-    private UserDAO userDAO;
+    private JdbcTemplateUserDAO userDAO;
 
     @Override
     public boolean supports(Class<?> aClass) {
