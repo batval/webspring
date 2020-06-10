@@ -13,6 +13,9 @@
             <property name="suffix" value=".jsp"/>
         </bean>
     -->
+
+    <import resource="persistence-config.xml"/>
+
     <bean id="freeMarker" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
         <property name="templateLoaderPath" value="/WEB-INF/templates"/>
         <property name="defaultEncoding" value="UTF-8"/>
