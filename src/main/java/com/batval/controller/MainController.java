@@ -1,9 +1,10 @@
 package com.batval.controller;
 
-import com.batval.dao.impl.JdbcTemplateUserDAO;
+import com.batval.dao.UserDAO;
 import com.batval.model.User;
 import com.batval.util.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,7 +20,8 @@ public class MainController {
     private UserValidator userValidator;
 
     @Autowired
-    private JdbcTemplateUserDAO userDAO;
+    @Qualifier("hibernateUserDAO")
+    private UserDAO userDAO;
 
     @GetMapping("/view/{name}")
     public String view(@PathVariable("name") String name, Model model) {

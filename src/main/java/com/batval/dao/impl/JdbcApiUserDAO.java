@@ -2,6 +2,7 @@ package com.batval.dao.impl;
 
 import com.batval.dao.UserDAO;
 import com.batval.model.User;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+@Component
 public class JdbcApiUserDAO implements UserDAO {
 
     private static Connection connection;
